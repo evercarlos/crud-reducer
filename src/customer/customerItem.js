@@ -13,13 +13,13 @@ export const  CustomerItem = ({items, handleDelete, handleEdit})=> {
                     <td> { row.age }</td>
                     <td className="action_button">
                        <button
-                         className="btn btn-success"
+                         className="btn btn-success margin-button-grid"
                          onClick={()=>{handleEdit(row)}}
                        >
                           Editar
                       </button> 
                        <button
-                         className="btn btn-danger"
+                         className="btn btn-danger margin-button-grid"
                          onClick={()=>{handleDelete(row.id)}}
                        >
                          Eliminar

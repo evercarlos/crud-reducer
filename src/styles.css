@@ -2,3 +2,16 @@
 .action_button {
     display: inline-block;
 }
+
+.margin-div{
+    margin-left: 3%;
+    margin-right: 5%;
+}
+.margin-button-grid{
+    margin: 2px;
+}
+
+.color-text{
+    color: black;
+    font-weight: bold;
+}

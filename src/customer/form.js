@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { useForm } from "../hooks/useForm"
 
-export const Form = ( {handleAdd, object}) => {
+export const Form = ( {handleSaveCustomer, handleEditCustomer, object}) => {
 
 
     // crearemos un customHooks
-    const [value, setValue, handleChange, reset] = useForm({
-        id: new Date().getTime(),
+    const {values: value, setValue, handleChange, reset } = useForm({
+        id: 0,
         dni: '',
         name: '',
         age: 0,
@@ -20,15 +20,23 @@ export const Form = ( {handleAdd, object}) => {
         
         e.preventDefault();
 
-        const params = {...value, id: new Date().getTime()};
+        let params;
+        
+        if(value.id === 0) {
+            params = {...value, id: new Date().getTime()};
+            handleSaveCustomer(params);
+        } else {
+            params = {...value};
+            handleEditCustomer(params);
+        }
 
-        handleAdd(params);
         reset();
     }
 
     return (
         <>
         <form onSubmit={ handleSubmit }>
+          <h4 className="text-center color-text">Registro de Clientes</h4>
         <div className="form-group">
             <label>
               DNI:
@@ -68,12 +76,16 @@ export const Form = ( {handleAdd, object}) => {
             onChange={ handleChange }
             />
         </div>
-        <button
-        type="submit"
-        className="btn btn-primary text-center"
+        <div
+          className="text-center"
         >
-            Submit
-        </button>
+           <button
+              type="submit"
+              className="btn btn-primary"
+            >
+                Submit
+            </button>
+        </div>
         </form>
         </>
     )

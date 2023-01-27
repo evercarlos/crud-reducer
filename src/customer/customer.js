@@ -26,11 +26,19 @@ export const Customer = () => {
     })
     
 
-    const handleAdd = (newAdd) => {
+    const handleSaveCustomer = (newAdd) => {
         
         dispatch({
             type: 'add',
             payload: newAdd
+        })
+    }
+
+    const handleEditCustomer = (editData) => {
+        
+        dispatch({
+            type: 'edit',
+            payload: editData
         })
     }
     const handleDelete = (id) => {
@@ -48,33 +56,37 @@ export const Customer = () => {
     }
   
     return (
-      <div className="row container">
+      <div className="row margin-div">
         <div className="col-sm-8">
-            <h4>Lista de Clientes</h4>
-            <table className="table">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>DNI</th>
-                        <th>Nombre</th>
-                        <th>Edad</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <CustomerItem
-                      handleDelete = { handleDelete }
-                      handleEdit = { handleEdit }
-                      items={ items }
-                    />
-                </tbody>
-            </table>
+            <h4 className="text-center color-text">Lista de Clientes</h4>
+            <div
+             className="table-responsive"
+            >
+                <table className="table">
+                    <thead>
+                        <tr>
+                            <th>DNI</th>
+                            <th>Nombre</th>
+                            <th>Edad</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <CustomerItem
+                        handleDelete = { handleDelete }
+                        handleEdit = { handleEdit }
+                        items={ items }
+                        />
+                    </tbody>
+                </table>
+            </div>
         </div>
         <div className="col-sm-4">
             <br />
             <Form
               object= { object }
-              handleAdd = { handleAdd }
+              handleSaveCustomer = { handleSaveCustomer }
+              handleEditCustomer = { handleEditCustomer }
             />
         </div>
       </div>
